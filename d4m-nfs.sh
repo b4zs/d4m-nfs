@@ -85,9 +85,9 @@ rpcbind -s
 DEFGW=\$(ip route|awk '/default/{print \$3}')
 FSTAB=\"\\n\\n# d4m-nfs mounts\n\"
 
-if ! \$(grep ':/mnt' /tmp/d4m-nfs-mounts.txt > /dev/null 2>&1); then
-  mkdir -p /mnt
-  FSTAB=\"\${FSTAB}\${DEFGW}:/Users/${USER} /mnt nfs nolock,local_lock=all 0 0\"
+if ! \$(grep ':/Users/${USER}' /tmp/d4m-nfs-mounts.txt > /dev/null 2>&1); then
+  mkdir -p /Users/${USER}
+  FSTAB=\"\${FSTAB}\${DEFGW}:/Users/${USER} /Users/${USER} nfs nolock,local_lock=all 0 0\"
 fi
 
 if [ -e /tmp/d4m-nfs-mounts.txt ]; then
